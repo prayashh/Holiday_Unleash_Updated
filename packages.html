@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Holiday Unleash - Packages</title>
+    <meta name="description" content="Sikkim & North Bengal tour packages - Holiday Unleash" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* === KEEP APP BAR LAYOUT & RESPONSIVENESS CONSISTENT WITH index.html === */
+        :root {
+            --primary: #0d4c6c;
+            --secondary: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --accent: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .section-title,
+        .page-hero h1 {
+            font-family: 'Karla', 'Roboto Slab', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* App Bar / Navbar - EXACT LAYOUT FROM index.html */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 76, 108, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--secondary);
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger span::before,
+        .hamburger span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span::before {
+            top: -7px;
+        }
+
+        .hamburger span::after {
+            top: 7px;
+        }
+
+        .hamburger.active span {
+            background: transparent;
+        }
+
+        .hamburger.active span::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger.active span::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Page header */
+        .page-hero {
+            padding: 130px 5% 3rem;
+            /* accounts for fixed navbar */
+            background: linear-gradient(180deg, rgba(13, 76, 108, 0.06), transparent);
+        }
+
+        .page-hero h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .page-hero p {
+            color: #444;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Filters / Sidebar */
+        .filters {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(13, 76, 108, 0.06);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filters h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .filter-group select,
+        .filter-group input[type="range"] {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #e6e6e6;
+            background: #fbfbfb;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: 1px dashed #ccc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Package grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.6rem;
+            justify-items: center;
+            width: 100%;
+        }
+
+        .pkg-card {
+            background: white;
+            border-radius: 28px;
+            overflow: visible;
+            box-shadow: 0 12px 30px rgba(13, 76, 108, 0.08);
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .pkg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(13, 76, 108, 0.12);
+        }
+
+        .pkg-media {
+            min-height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+        }
+
+        .pkg-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.4rem 0.7rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .pkg-body {
+            padding: 1.4rem 1.6rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .pkg-title {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: baseline;
+        }
+
+        .pkg-title h3 {
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .pkg-duration {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .pkg-desc {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-top: 0.2rem;
+        }
+
+        .pkg-features {
+            list-style: none;
+            margin-top: 0.4rem;
+            color: #444;
+            font-size: 0.93rem;
+        }
+
+        .pkg-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: -0.2rem;
+        }
+
+        .pkg-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .pkg-price {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .pkg-price span {
+            display: block;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .pkg-cta {
+            display: flex;
+            gap: 0.7rem;
+            align-items: center;
+        }
+
+        .small-btn {
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-book {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 10px 18px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-details {
+            background: transparent;
+            border: 1px solid #e6e6e6;
+            color: var(--primary);
+        }
+
+        .small-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-details:hover {
+            border-color: var(--primary);
+        }
+
+        /* Price table */
+        .pricing-summary {
+            margin-top: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .pricing-pill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 10px 24px rgba(13, 76, 108, 0.08);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .pricing-pill strong {
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .pricing-pill span {
+            color: #4b5563;
+            font-weight: 600;
+        }
+
+        /* Accordion for itinerary */
+        .accordion-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(13, 76, 108, 0.04);
+            margin-bottom: 0.8rem;
+        }
+
+        .accordion-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+        }
+
+        .accordion-body {
+            padding: 0 1rem 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body.open {
+            padding: 0.8rem 1rem 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                position: relative;
+                top: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(13, 76, 108, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1rem 0 1.5rem;
+                transition: left 0.3s;
+                gap: 0.5rem;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 0.95rem;
+                padding: 0.6rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+                justify-items: stretch;
+            }
+
+            .pkg-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .pkg-card {
+                border-radius: 20px;
+            }
+
+            .pkg-body {
+                padding: 1.1rem 1.1rem 1.3rem;
+            }
+        }
+
+        /* Booking modal */
+        .booking-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1500;
+        }
+
+        .booking-modal.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .booking-card {
+            background: white;
+            width: 100%;
+            max-width: 460px;
+            border-radius: 22px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .booking-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .booking-card p {
+            color: #555;
+            margin-bottom: 1.4rem;
+        }
+
+        .booking-card label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .booking-card input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #dfe3e6;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .booking-card input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+        }
+
+        .booking-actions {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: flex-end;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            border: none;
+            background: transparent;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR (UNALTERED LAYOUT) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Holiday<span>Unleash</span></div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="booking.html">Booking</a>
+                <a href="packages.html" class="active">Packages</a>
+                <a href="custom.html">Custom Packages</a>
+                <a href="vehicles.html">Vehicles</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Packages — Sikkim & North Bengal</h1>
+            <p>Handpicked, market-validated itineraries covering classic circuits, offbeat trails, adventure and luxury
+                experiences. Select a category or filter by duration, price and interests.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="layout">
+
+            <!-- Filters / Sidebar -->
+            <aside class="filters" id="filters">
+                <h3>Filter Packages</h3>
+
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="all">All</option>
+                        <option value="circuit">Popular Circuits</option>
+                        <option value="north-sikkim">North Sikkim</option>
+                        <option value="honeymoon">Honeymoon</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="offbeat">Offbeat</option>
+                        <option value="wildlife">Wildlife</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="budget">Budget</option>
+                        <option value="luxury">Luxury</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="duration">Max Duration (nights)</label>
+                    <select id="duration">
+                        <option value="999">Any</option>
+                        <option value="1">1-2 nights</option>
+                        <option value="3">3-4 nights</option>
+                        <option value="5">5-6 nights</option>
+                        <option value="7">7+ nights</option>
+                        <option value="10">10+ nights</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="price">Max Price (₹)</label>
+                    <select id="price">
+                        <option value="9999999">Any</option>
+                        <option value="10000">₹10,000</option>
+                        <option value="20000">₹20,000</option>
+                        <option value="30000">₹30,000</option>
+                        <option value="50000">₹50,000</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Interests</label>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
+                        <button class="small-btn" data-interest="nature">Nature</button>
+                        <button class="small-btn" data-interest="trekking">Trekking</button>
+                        <button class="small-btn" data-interest="culture">Culture</button>
+                        <button class="small-btn" data-interest="wildlife">Wildlife</button>
+                        <button class="small-btn" data-interest="photography">Photography</button>
+                        <button class="small-btn" data-interest="honeymoon">Honeymoon</button>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button id="applyFilters" class="small-btn btn-book">Apply</button>
+                    <button id="clearFilters" class="clear-btn">Clear</button>
+                </div>
+
+                <!-- Price table quick reference -->
+                <div style="margin-top:1rem">
+                    <h4 style="margin-bottom:0.6rem;color:var(--primary)">Pricing Snapshot</h4>
+                    <div class="pricing-summary">
+                        <div class="pricing-pill">
+                            <strong>Budget / Short Stays</strong>
+                            <span>₹6,000 – ₹10,000</span>
+                        </div>
+                        <div class="pricing-pill">
+                            <strong>Circuit / Classic Tours</strong>
+                            <span>₹10,000 – ₹32,000</span>
+                        </div>
+                        <div class="pricing-pill">
+                            <strong>Adventure / Trekking</strong>
+                            <span>₹15,000 – ₹25,000</span>
+                        </div>
+                        <div class="pricing-pill">
+                            <strong>Honeymoon / Luxury</strong>
+                            <span>₹17,500 – ₹80,000</span>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Packages List -->
+            <section>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+                    <h2 style="color:var(--primary)">All Packages</h2>
+                    <div style="color:#666">Showing <span id="resultCount">13</span> packages</div>
+                </div>
+
+                <div class="packages-grid" id="packagesGrid">
+
+                    <!-- Package cards generated from the blueprint (condensed but complete) -->
+
+                    <!-- 1. Grand Sikkim Circuit -->
+                    <article class="pkg-card" data-category="circuit" data-duration="7" data-price="14500"
+                        data-interests="family,scenic,culture">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/Darjeeling\ and\ Gangtok\ Tour\ Package.jpeg')">
+                            <div class="pkg-badge">Popular</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Grand Sikkim Circuit — Gangtok, Pelling & Darjeeling</h3>
+                                <div class="pkg-duration">7N / 8D</div>
+                            </div>
+                            <div class="pkg-desc">Complete Sikkim & Darjeeling experience with cultural monasteries,
+                                Kanchenjunga views and the UNESCO toy train zone.</div>
+                            <ul class="pkg-features">
+                                <li>Route: Gangtok → Pelling → Darjeeling</li>
+                                <li>Includes: Hotel, private vehicle, permits</li>
+                                <li>Price Range: ₹14,500 - ₹32,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹14,500<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='grand-sikkim'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-body" id="grand-sikkim">
+                            <strong>Day-by-day:</strong>
+                            <ol style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>NJP/Bagdogra → Gangtok | MG Marg</li>
+                                <li>Tsomgo Lake → Baba Mandir → Optional Nathula</li>
+                                <li>Gangtok city tour (Rumtek, Ropeway, Tibetology)</li>
+                                <li>Transfer to Pelling via Ravangla</li>
+                                <li>Pelling highlights (Khecheopalri, Pemayangtse)</li>
+                                <li>Drive to Darjeeling via tea estates</li>
+                                <li>Tiger Hill sunrise & Darjeeling sightseeing</li>
+                                <li>Return NJP/Bagdogra</li>
+                            </ol>
+                        </div>
+                    </article>
+
+                    <!-- 2. North Sikkim Paradise -->
+                    <article class="pkg-card" data-category="north-sikkim" data-duration="5" data-price="12000"
+                        data-interests="nature,adventure,snow">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/north\ sikkim.jpeg')">
+                            <div class="pkg-badge">Adventure</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>North Sikkim Paradise — Gangtok, Lachen & Lachung</h3>
+                                <div class="pkg-duration">5N / 6D</div>
+                            </div>
+                            <div class="pkg-desc">High-altitude lakes, Yumthang Valley, Gurudongmar Lake and snow
+                                experiences.</div>
+                            <ul class="pkg-features">
+                                <li>Includes: Permits, transfers, local guides</li>
+                                <li>Optional: Zero Point, Yak rides</li>
+                                <li>Price Range: ₹12,000 - ₹25,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹12,000<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='north-sikkim'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="north-sikkim">
+                            <strong>Day-by-day:</strong>
+                            <ol style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Arrival Gangtok, permit processing</li>
+                                <li>Drive to Lachen — waterfalls en-route</li>
+                                <li>Gurudongmar Lake excursion → Transfer to Lachung</li>
+                                <li>Yumthang Valley + Hot Springs</li>
+                                <li>Lachung → Gangtok</li>
+                                <li>Tsomgo Lake & Departure</li>
+                            </ol>
+                        </div>
+                    </article>
+
+                    <!-- 3. Romantic Sikkim Escape (Honeymoon) -->
+                    <article class="pkg-card" data-category="honeymoon" data-duration="6" data-price="17500"
+                        data-interests="romantic,luxury">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/family\ tour\ sikkim\ and\ darjeeling.jpeg')">
+                            <div class="pkg-badge">Honeymoon</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Romantic Sikkim Escape</h3>
+                                <div class="pkg-duration">6N / 7D</div>
+                            </div>
+                            <div class="pkg-desc">Luxury stays, private transfers, candlelight dinners and couple
+                                photography.</div>
+                            <ul class="pkg-features">
+                                <li>Destinations: Gangtok, Lachung, Lachen, Pelling</li>
+                                <li>Special: Flower decor, private experiences</li>
+                                <li>Price Range: ₹17,500 - ₹45,000 (per couple)</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹17,500<span>per couple</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='honeymoon'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="honeymoon">
+                            <strong>Highlights:</strong>
+                            <ul style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Private transfers & luxury hotels</li>
+                                <li>Candlelight dinner & lake-side stays</li>
+                                <li>Complimentary couple photography session</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- 4. Goechala Trek -->
+                    <article class="pkg-card" data-category="adventure" data-duration="10" data-price="15000"
+                        data-interests="trekking,adventure">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/Adventures\ in\ Sikkim.jpeg')">
+                            <div class="pkg-badge">Trek</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Goechala Trek — Ultimate Himalayan Adventure</h3>
+                                <div class="pkg-duration">10N / 11D</div>
+                            </div>
+                            <div class="pkg-desc">Classic Goechala route with alpine meadows, rhododendrons and close
+                                Kanchenjunga views.</div>
+                            <ul class="pkg-features">
+                                <li>Route: Yuksom → Dzongri → Samiti Lake → Goechala</li>
+                                <li>Includes: Camping, guides, porters, permits</li>
+                                <li>Best Season: Apr-Jun, Sep-Nov</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹15,000<span>per trekker</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='goechala'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="goechala">
+                            <strong>Trek Route:</strong>
+                            <p style="margin-top:0.6rem">Yuksom → Sachen → Tshoka → Dzongri → Thansing → Samiti Lake →
+                                Goechala Pass</p>
+                        </div>
+                    </article>
+
+                    <!-- 5. River Rafting - Teesta -->
+                    <article class="pkg-card" data-category="adventure" data-duration="0" data-price="750"
+                        data-interests="water-sport,adventure">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/river\ rafting.jpeg')">
+                            <div class="pkg-badge">Day Trip</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>River Rafting — Teesta</h3>
+                                <div class="pkg-duration">1 Day</div>
+                            </div>
+                            <div class="pkg-desc">Grade II-IV rapids on the Teesta — short to long sections available.
+                            </div>
+                            <ul class="pkg-features">
+                                <li>Duration: 1.5 - 4.5 hours depending on section</li>
+                                <li>Price Range: ₹750 - ₹1,200</li>
+                                <li>Includes: Safety gear, trained guides</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹750<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='rafting'>Details</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="rafting">
+                            <strong>Sections:</strong>
+                            <ul style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Short: Melli to 29th Mile (1 hr)</li>
+                                <li>Medium: Rangpo to Melli (2.5 hrs)</li>
+                                <li>Long: Bardang to 29th Mile (4.5 hrs)</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- 6. Silk Route - Zuluk -->
+                    <article class="pkg-card" data-category="offbeat" data-duration="4" data-price="9500"
+                        data-interests="culture,photography,offbeat">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/silk\ route.jpeg')">
+                            <div class="pkg-badge">Offbeat</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Silk Route — Zuluk Heritage Trail</h3>
+                                <div class="pkg-duration">4N / 5D</div>
+                            </div>
+                            <div class="pkg-desc">Old silk route ambience, hairpin bends, sunrise viewpoints and
+                                homestays.</div>
+                            <ul class="pkg-features">
+                                <li>Highlights: Nathang Valley, Kupup Lake, Thambi View Point</li>
+                                <li>Price Range: ₹9,500 - ₹15,000</li>
+                                <li>Unique: Authentic homestays</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹9,500<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='silk-route'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="silk-route">
+                            <strong>Itinerary:</strong>
+                            <ol style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>NJP → Zuluk | Aritar Lake</li>
+                                <li>Zuluk → Nathang Valley | Thambi sunrise</li>
+                                <li>Nathang → Mankhim (Eagle's Nest)</li>
+                                <li>Mankhim → Icchey Gaon → Return NJP</li>
+                            </ol>
+                        </div>
+                    </article>
+
+                    <!-- 7. North Bengal Offbeat - Village Circuit -->
+                    <article class="pkg-card" data-category="offbeat" data-duration="4" data-price="6500"
+                        data-interests="eco-tourism,village">
+                        <div class="pkg-media"
+                            style="background-image:url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1400&q=60')">
+                            <div class="pkg-badge">Budget</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>North Bengal Offbeat — Village Circuit</h3>
+                                <div class="pkg-duration">4N / 5D</div>
+                            </div>
+                            <div class="pkg-desc">Orange orchards, village stays and forest walks across Sittong,
+                                Chatakpur and Tinchuley.</div>
+                            <ul class="pkg-features">
+                                <li>Includes: Homestays, local meals, private vehicle</li>
+                                <li>Price Range: ₹6,500 - ₹9,500</li>
+                                <li>Perfect for: Eco-tourism & budget travelers</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹6,500<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='village-circuit'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="village-circuit">
+                            <strong>Sample:</strong>
+                            <ol style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>NJP → Sittong (orange orchards)</li>
+                                <li>Sittong → Mongpu → Ahaldara viewpoint</li>
+                                <li>Forest walk to Chatakpur</li>
+                                <li>Chatakpur → Darjeeling → NJP</li>
+                            </ol>
+                        </div>
+                    </article>
+
+                    <!-- 8. Dooars Wildlife Safari -->
+                    <article class="pkg-card" data-category="wildlife" data-duration="3" data-price="6000"
+                        data-interests="wildlife,nature">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/wildlife\ safari.jpeg')">
+                            <div class="pkg-badge">Wildlife</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Dooars Wildlife Safari</h3>
+                                <div class="pkg-duration">3N / 4D</div>
+                            </div>
+                            <div class="pkg-desc">Gorumara & Jaldapara safaris — one-horned rhino, elephants and
+                                birding.
+                            </div>
+                            <ul class="pkg-features">
+                                <li>Safaris: Elephant / Jeep options</li>
+                                <li>Price Range: ₹6,000 - ₹12,000</li>
+                                <li>Best Season: Oct - Apr</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹6,000<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='dooars'>Details</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="dooars">
+                            <strong>Highlights:</strong>
+                            <ul style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Gorumara / Jaldapara safaris</li>
+                                <li>Elephant & Jeep options, birdwatching</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- 9. Buddhist Monastery Circuit -->
+                    <article class="pkg-card" data-category="cultural" data-duration="5" data-price="12000"
+                        data-interests="culture,spiritual">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/rumtek\ monastary.jpeg')">
+                            <div class="pkg-badge">Cultural</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Buddhist Monastery Circuit</h3>
+                                <div class="pkg-duration">5N / 6D</div>
+                            </div>
+                            <div class="pkg-desc">Visit Rumtek, Pemayangtse, Tashiding and many historic monasteries
+                                with cultural immersion.</div>
+                            <ul class="pkg-features">
+                                <li>Activities: Morning prayers, meditation sessions</li>
+                                <li>Price Range: ₹12,000 - ₹20,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹12,000<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='buddhist'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="buddhist">
+                            <strong>Monasteries:</strong>
+                            <p style="margin-top:0.6rem">Rumtek, Enchey, Pemayangtse, Tashiding and North Sikkim
+                                monasteries.</p>
+                        </div>
+                    </article>
+
+                    <!-- 10. Complete Family Tour -->
+                    <article class="pkg-card" data-category="family" data-duration="7" data-price="15000"
+                        data-interests="family,children">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/darjeeling\ rail.jpeg')">
+                            <div class="pkg-badge">Family</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Complete Family Tour — Sikkim & Darjeeling</h3>
+                                <div class="pkg-duration">7N / 8D</div>
+                            </div>
+                            <div class="pkg-desc">Kid-friendly activities, toy train, zoo visits, easy nature walks and
+                                family hotels.</div>
+                            <ul class="pkg-features">
+                                <li>Child-friendly meals & flexible itineraries</li>
+                                <li>Price Range: ₹15,000 - ₹32,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹15,000<span>per family</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='family-tour'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="family-tour">
+                            <strong>Sample:</strong>
+                            <p style="margin-top:0.6rem">Gangtok → Pelling → Darjeeling with toy train experience and
+                                zoo visit.</p>
+                        </div>
+                    </article>
+
+                    <!-- 11. Darjeeling-Kalimpong Classic (Tea Country) -->
+                    <article class="pkg-card" data-category="circuit" data-duration="3" data-price="6500"
+                        data-interests="tea,heritage">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/tea\ experience.jpeg')">
+                            <div class="pkg-badge">Classic</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Tea Country Experience — Darjeeling & Kalimpong</h3>
+                                <div class="pkg-duration">3N / 4D</div>
+                            </div>
+                            <div class="pkg-desc">Tiger Hill sunrise, tea garden visits and colonial heritage of
+                                Darjeeling and Kalimpong.</div>
+                            <ul class="pkg-features">
+                                <li>Highlights: Toy train, Deolo viewpoint</li>
+                                <li>Price Range: ₹6,500 - ₹18,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹6,500<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='tea-country'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="tea-country">
+                            <strong>Itinerary:</strong>
+                            <p style="margin-top:0.6rem">NJP → Darjeeling → Kalimpong → NJP</p>
+                        </div>
+                    </article>
+
+                    <!-- 12. Budget Gangtok Getaway -->
+                    <article class="pkg-card" data-category="budget" data-duration="3" data-price="6200"
+                        data-interests="budget,solo,backpack">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/budget\ gangtok.jpeg')">
+                            <div class="pkg-badge">Budget</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Budget Gangtok Getaway</h3>
+                                <div class="pkg-duration">3N / 4D</div>
+                            </div>
+                            <div class="pkg-desc">Affordable stays, shared sightseeing and essential permits included.
+                            </div>
+                            <ul class="pkg-features">
+                                <li>Includes: Breakfast & dinner, shared vehicle</li>
+                                <li>Price Range: ₹6,200 - ₹8,800</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹6,200<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details"
+                                        data-accordion='budget-gangtok'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="budget-gangtok">
+                            <strong>Inclusions:</strong>
+                            <p style="margin-top:0.6rem">Budget hotels/homestays, breakfast & dinner, shared vehicle,
+                                permits.</p>
+                        </div>
+                    </article>
+
+                    <!-- 13. Luxury Sikkim Experience -->
+                    <article class="pkg-card" data-category="luxury" data-duration="7" data-price="42000"
+                        data-interests="luxury,exclusive">
+                        <div class="pkg-media"
+                            style="background-image:url('assets/images/packages/luxary\ resort\ in\ sikim.jpeg')">
+                            <div class="pkg-badge">Luxury</div>
+                        </div>
+                        <div class="pkg-body">
+                            <div class="pkg-title">
+                                <h3>Luxury Sikkim Experience</h3>
+                                <div class="pkg-duration">7N / 8D</div>
+                            </div>
+                            <div class="pkg-desc">Premium hotels, private chauffeurs, spa sessions and bespoke
+                                experiences.</div>
+                            <ul class="pkg-features">
+                                <li>Hotels: Mayfair, Taj alternatives</li>
+                                <li>Price Range: ₹42,000 - ₹80,000</li>
+                            </ul>
+                            <div class="pkg-footer">
+                                <div class="pkg-price">₹42,000<span>per person</span></div>
+                                <div class="pkg-cta">
+                                    <button class="small-btn btn-details" data-accordion='luxury'>Itinerary</button>
+                                    <button class="small-btn btn-book">Book</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="luxury">
+                            <strong>Premium Inclusions:</strong>
+                            <ul style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Private chauffeur, spa, gourmet dining options</li>
+                                <li>Optional helicopter rides (extra)</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Booking Tips & Permit Info -->
+                <section style="margin-top:1.6rem">
+                    <div class="accordion-item">
+                        <div class="accordion-head" data-toggle="tips">
+                            <strong>Booking Tips & Popular Combinations</strong>
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-body" id="tips">
+                            <ul style="margin-top:0.6rem;padding-left:1.2rem">
+                                <li>Book early for Oct-Nov & Dec-Jan peak periods — 10-15% early booking discounts
+                                    available.</li>
+                                <li>Popular combos: Gangtok (3N) + Pelling (2N) + Darjeeling (2N) = 7N/8D</li>
+                                <li>North Sikkim requires RAP & minimum 2 persons for some bookings.</li>
+                                <li>Nathula Pass is for Indian nationals only and requires advance booking.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-head" data-toggle="inclusions">
+                            <strong>Standard Inclusions & Exclusions</strong>
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-body" id="inclusions">
+                            <div style="margin-top:0.6rem;padding-left:1.2rem">
+                                <p><strong>Inclusions</strong>: Accommodation, daily breakfast (most packages),
+                                    transfers, permits, driver allowances and GST.</p>
+                                <p style="margin-top:0.4rem"><strong>Exclusions</strong>: Air/train tickets, lunch
+                                    (unless specified), personal expenses, camera charges, optional activities, travel
+                                    insurance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="bookingModal" aria-hidden="true">
+        <div class="booking-card">
+            <button class="modal-close" type="button" aria-label="Close booking form" id="modalClose">×</button>
+            <h3 id="modalPackageTitle">Book Package</h3>
+            <p id="modalPackageMeta">Share your contact to get a callback on WhatsApp.</p>
+            <label for="guestName">Your Name</label>
+            <input type="text" id="guestName" placeholder="Full name" />
+            <label for="guestPhone">Mobile Number</label>
+            <input type="tel" id="guestPhone" placeholder="+91 9XXXX XXXXX" />
+            <div class="booking-actions">
+                <button class="small-btn btn-details" type="button" id="modalCancel">Cancel</button>
+                <button class="small-btn btn-book" type="button" id="modalSubmit">Send via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <footer style="margin-top:2rem;padding:2rem 5%;background:var(--dark);color:white;text-align:center">
+        <div class="container">
+            <div style="margin-bottom:0.6rem">© 2025 Holiday Unleash. All rights reserved.</div>
+            <div style="font-size:0.9rem;opacity:0.9">Questions? <a href="contact.html"
+                    style="color:var(--secondary)">Contact Us</a></div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect (same as index)
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile Menu Toggle (same as index)
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Booking modal handlers
+        const bookingModal = document.getElementById('bookingModal');
+        const guestName = document.getElementById('guestName');
+        const guestPhone = document.getElementById('guestPhone');
+        const modalTitle = document.getElementById('modalPackageTitle');
+        const modalMeta = document.getElementById('modalPackageMeta');
+        const modalSubmit = document.getElementById('modalSubmit');
+        const modalClose = document.getElementById('modalClose');
+        const modalCancel = document.getElementById('modalCancel');
+        let selectedPackage = '';
+        let selectedSummary = '';
+
+        const toggleModal = (open) => {
+            if (open) {
+                bookingModal.classList.add('open');
+                bookingModal.setAttribute('aria-hidden', 'false');
+                setTimeout(() => guestName.focus(), 50);
+            } else {
+                bookingModal.classList.remove('open');
+                bookingModal.setAttribute('aria-hidden', 'true');
+                guestName.value = '';
+                guestPhone.value = '';
+            }
+        };
+
+        document.querySelectorAll('.btn-book').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.pkg-card');
+                if (!card) return;
+                selectedPackage = card.querySelector('h3')?.textContent?.trim() || 'Holiday Unleash Package';
+                const duration = card.querySelector('.pkg-duration')?.textContent?.trim() || '';
+                const priceEl = card.querySelector('.pkg-price');
+                const price = priceEl ? priceEl.innerText.trim() : '';
+                modalTitle.textContent = `Book: ${selectedPackage}`;
+                modalMeta.textContent = [duration, price ? `Starts ${price}` : ''].filter(Boolean).join(' • ');
+                selectedSummary = [selectedPackage, duration, price].filter(Boolean).join(' | ');
+                toggleModal(true);
+            });
+        });
+
+        const sendWhatsApp = () => {
+            const name = guestName.value.trim();
+            const phone = guestPhone.value.trim();
+            if (!name || !phone) {
+                alert('Please provide both name and mobile number.');
+                return;
+            }
+            if (!/^\+?\d[\d\s-]{8,}$/.test(phone)) {
+                alert('Please enter a valid mobile number.');
+                return;
+            }
+            const message = encodeURIComponent(`Holiday Unleash enquiry:%0A%0APackage: ${selectedSummary}%0AName: ${name}%0AMobile: ${phone}%0A%0APlease share the detailed quote.`);
+            window.open(`https://wa.me/918918992971?text=${message}`, '_blank');
+            toggleModal(false);
+        };
+
+        modalSubmit.addEventListener('click', sendWhatsApp);
+        modalClose.addEventListener('click', () => toggleModal(false));
+        modalCancel.addEventListener('click', () => toggleModal(false));
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) toggleModal(false);
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleModal(false);
+        });
+
+        // Accordion toggle for package details
+        document.querySelectorAll('.btn-details').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const accId = btn.getAttribute('data-accordion');
+                const body = document.getElementById(accId);
+                if (!body) return;
+                // toggle max-height
+                if (body.style.maxHeight && body.style.maxHeight !== '0px') {
+                    body.style.maxHeight = null;
+                    body.classList.remove('open');
+                } else {
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.classList.add('open');
+                }
+                // smooth scroll small offset
+                body.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        // Generic accordion heads
+        document.querySelectorAll('.accordion-head').forEach(head => {
+            head.addEventListener('click', () => {
+                const toggle = head.getAttribute('data-toggle');
+                const body = document.getElementById(toggle);
+                if (!body) return;
+                if (body.style.maxHeight && body.style.maxHeight !== '0px') {
+                    body.style.maxHeight = null;
+                    body.classList.remove('open');
+                } else {
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.classList.add('open');
+                }
+            });
+        });
+
+        // Filtering logic (client-side)
+        const applyFilters = document.getElementById('applyFilters');
+        const clearFilters = document.getElementById('clearFilters');
+        const packagesGrid = document.getElementById('packagesGrid');
+        const resultCount = document.getElementById('resultCount');
+
+        function applyFilterValues() {
+            const category = document.getElementById('category').value;
+            const duration = parseInt(document.getElementById('duration').value);
+            const price = parseInt(document.getElementById('price').value);
+
+            const cards = Array.from(document.querySelectorAll('.pkg-card'));
+            let shown = 0;
+            cards.forEach(card => {
+                const cCat = card.getAttribute('data-category');
+                const cDur = parseInt(card.getAttribute('data-duration')) || 0;
+                const cPrice = parseInt(card.getAttribute('data-price')) || 9999999;
+
+                const matchCategory = (category === 'all') || (cCat === category) || (category === 'circuit' && cCat === 'circuit');
+                const matchDuration = (duration === 999) || (cDur <= duration) || (duration === 7 && cDur >= 7);
+                const matchPrice = (cPrice <= price) || (price === 9999999);
+
+                if (matchCategory && matchDuration && matchPrice) {
+                    card.style.display = '';
+                    shown++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            resultCount.textContent = shown;
+        }
+
+        applyFilters.addEventListener('click', applyFilterValues);
+
+        clearFilters.addEventListener('click', () => {
+            document.getElementById('category').value = 'all';
+            document.getElementById('duration').value = '999';
+            document.getElementById('price').value = '9999999';
+            document.querySelectorAll('.small-btn[data-interest]').forEach(b => b.classList.remove('active'));
+            Array.from(document.querySelectorAll('.pkg-card')).forEach(c => c.style.display = '');
+            resultCount.textContent = document.querySelectorAll('.pkg-card').length;
+        });
+
+        // Interest buttons (toggles) - simple client-side filtering by interest
+        document.querySelectorAll('.small-btn[data-interest]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                // build interest filter array
+                const active = Array.from(document.querySelectorAll('.small-btn[data-interest].active')).map(b => b.getAttribute('data-interest'));
+                if (active.length === 0) {
+                    document.querySelectorAll('.pkg-card').forEach(c => c.style.display = '');
+                    resultCount.textContent = document.querySelectorAll('.pkg-card').length;
+                    return;
+                }
+                let shown = 0;
+                document.querySelectorAll('.pkg-card').forEach(card => {
+                    const interests = (card.getAttribute('data-interests') || '').split(',');
+                    const matched = active.some(a => interests.includes(a));
+                    if (matched) { card.style.display = ''; shown++; } else { card.style.display = 'none'; }
+                });
+                resultCount.textContent = shown;
+            });
+        });
+
+        // initialize result count
+        resultCount.textContent = document.querySelectorAll('.pkg-card').length;
+
+    </script>
+</body>
+
+</html>

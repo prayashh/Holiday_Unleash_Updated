@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ — Holiday Unleash</title>
+    <meta name="description"
+        content="Quick answers about Sikkim & North Bengal travel — permits, best time, snowfall, transport, and more." />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary: #0d4c6c;
+            --secondary: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --border: #e0e0e0;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        .page-hero h1,
+        .section-title {
+            font-family: 'Karla', 'Roboto Slab', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 76, 108, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--secondary);
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger span::before,
+        .hamburger span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span::before {
+            top: -7px;
+        }
+
+        .hamburger span::after {
+            top: 7px;
+        }
+
+        .hamburger.active span {
+            background: transparent;
+        }
+
+        .hamburger.active span::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger.active span::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Hero */
+        .page-hero {
+            padding: 120px 5% 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(13, 76, 108, 0.9), rgba(13, 76, 108, 0.9)), url('https://images.unsplash.com/photo-1574007557329-5c5e0e04e038?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+        }
+
+        .page-hero .muted {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FAQ */
+        .section {
+            padding: 4rem 1.5rem;
+        }
+
+        .faq {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        details {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        details:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        summary {
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary);
+            user-select: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: '−';
+        }
+
+        details[open] {
+            margin-bottom: 1.5rem;
+        }
+
+        details>div {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--dark);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border);
+        }
+
+        details>div ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        details>div ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        details>div strong {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(13, 76, 108, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1rem 0 1.5rem;
+                transition: left 0.3s;
+                gap: 0.5rem;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 0.95rem;
+                padding: 0.6rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .section {
+                padding: 2.5rem 0.75rem;
+            }
+
+            .faq {
+                max-width: 100%;
+            }
+
+            .page-hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .page-hero .muted {
+                font-size: 1rem;
+            }
+
+            .page-hero {
+                padding-top: 110px;
+            }
+
+            summary {
+                font-size: 0.98rem;
+                padding: 0.7rem 0.9rem;
+            }
+
+            details {
+                margin-bottom: 0.6rem;
+            }
+
+            details[open] {
+                margin-bottom: 0.9rem;
+            }
+
+            details>div {
+                font-size: 0.9rem;
+                padding: 0 0.9rem 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu a {
+                font-size: 0.9rem;
+            }
+
+            .page-hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .wrap {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Holiday<span>Unleash</span></div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="booking.html">Booking</a>
+                <a href="packages.html">Packages</a>
+                <a href="custom.html">Custom Packages</a>
+                <a href="vehicles.html">Vehicles</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <main>
+        <section class="page-hero">
+            <div class="wrap">
+                <h1>Frequently Asked Questions</h1>
+                <p class="muted">Quick answers about Sikkim & North Bengal travel.</p>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion -->
+        <section class="section">
+            <div class="wrap">
+                <div class="faq">
+                    <!-- All your Q&A preserved exactly -->
+                    <details>
+                        <summary>What are the main tourist attractions in Sikkim?</summary>
+                        <div>Sikkim is home to amazing tourist spots like MG Marg, Tsomgo Lake, Baba Mandir, Nathula
+                            Pass, Gurudongmar Lake, Yumthang Valley, Zero Point, Kaala Pathar, Namchi Char Dham, Buddha
+                            Park in Ravangla, and various monasteries.</div>
+                    </details>
+                    <details>
+                        <summary>How far is North Sikkim from Gangtok?</summary>
+                        <div>North Sikkim's popular destinations, Lachung and Lachen, are about 120 km from Gangtok. It
+                            takes around 5–6 hours to reach due to narrow roads.</div>
+                    </details>
+                    <details>
+                        <summary>Is Nathula Pass open every day?</summary>
+                        <div>No, Nathula Pass is closed for tourists on Mondays and Tuesdays each week.</div>
+                    </details>
+                    <details>
+                        <summary>Do Indian Nationals need a permit to visit Sikkim?</summary>
+                        <div>Indian Nationals do not need a permit to visit most of Sikkim, but for places like Tsomgo
+                            Lake, Baba Mandir, Nathula Pass, Gurudongmar Lake, and Yumthang Valley, an Inner Line Permit
+                            (ILP) is required. This can be arranged through a local tour operator.</div>
+                    </details>
+                    <details>
+                        <summary>What is the best time to visit Sikkim?</summary>
+                        <div>The best time to visit Sikkim is between October and March for clear views of the mountains
+                            and snow. If you want to experience snowfall, visit from January to March. For warmer
+                            weather, visit from April to June.</div>
+                    </details>
+                    <details>
+                        <summary>How far is Sikkim's airport from Gangtok?</summary>
+                        <div>Pakyong Airport is around 30 km from Gangtok, but flights are limited. It’s better to fly
+                            into Bagdogra Airport, which is 120 km away and has better connectivity.</div>
+                    </details>
+                    <details>
+                        <summary>How can I reach Sikkim?</summary>
+                        <div>Sikkim is well-connected by air, rail, and road. You can fly to Pakyong or Bagdogra
+                            Airport, or take a train to New Jalpaiguri Railway Station, about 120 km from Gangtok.</div>
+                    </details>
+                    <details>
+                        <summary>Is there snowfall in Sikkim? When does it happen?</summary>
+                        <div>Yes, Sikkim experiences snowfall in high-altitude areas like Tsomgo Lake, Nathula Pass,
+                            Baba Mandir, Gurudongmar Lake, and Yumthang Valley, usually from December to March.</div>
+                    </details>
+                    <details>
+                        <summary>How many days do you need to explore Sikkim?</summary>
+                        <div>To visit the major attractions in Sikkim, you'll need about 7 to 8 days, covering Gangtok,
+                            Lachen, Lachung, Pelling, and Ravangla.</div>
+                    </details>
+                    <details>
+                        <summary>Is there a dress code for visiting Sikkim?</summary>
+                        <div>Sikkim has a cool climate year-round, so you'll need warm clothing. When visiting religious
+                            places, make sure to dress modestly and appropriately.</div>
+                    </details>
+                    <details>
+                        <summary>Which other cities can I visit along with Gangtok?</summary>
+                        <div>Sikkim is small, so you can easily explore nearby towns like Darjeeling, Pelling, Lachung,
+                            Lachen, and Kalimpong during your trip.</div>
+                    </details>
+                    <details>
+                        <summary>What are the best places to shop in Sikkim?</summary>
+                        <div>Popular shopping spots include Mahatma Gandhi Road, Directorate of Handicrafts, and Lal
+                            Bazaar. You can buy items like prayer flags, Thangka paintings, singing bowls, and local
+                            tea.</div>
+                    </details>
+                    <details>
+                        <summary>What adventure activities can I do in Sikkim?</summary>
+                        <div>Sikkim offers exciting adventure activities such as river rafting in Teesta River, mountain
+                            biking, paragliding, trekking, rock climbing, and wildlife safaris.</div>
+                    </details>
+                    <details>
+                        <summary>Do all sightseeing spots in Sikkim require a permit?</summary>
+                        <div>Yes, many popular spots like Tsomgo Lake, Baba Mandir, Nathula Pass, and Gurudongmar Lake
+                            require permits. Indian nationals can easily apply online or at the police check post in
+                            Sikkim.</div>
+                    </details>
+                    <details>
+                        <summary>What are the must-visit destinations in Sikkim?</summary>
+                        <div>Don't miss famous places like Gurudongmar Lake, Nathula Pass, Yumthang Valley, Tsomgo Lake,
+                            Rumtek Monastery, and Khangchendzonga National Park.</div>
+                    </details>
+                    <details>
+                        <summary>How is public transportation in Sikkim?</summary>
+                        <div>Public transport in Sikkim is limited, but you can opt for shared vehicles or hire a cab
+                            from government-authorized tour operators for a more convenient experience.</div>
+                    </details>
+                    <details>
+                        <summary>Do I need a visa to visit Sikkim?</summary>
+                        <div>Indian citizens don't need a visa to visit Sikkim. However, foreign nationals must obtain a
+                            Restricted Area Permit (RAP) or Inner Line Permit (ILP) for certain areas.</div>
+                    </details>
+                    <details>
+                        <summary>How can I reach Sikkim? Are there any international airports?</summary>
+                        <div>The easiest way to reach Sikkim is through Bagdogra International Airport, located 120 km
+                            from Gangtok. The nearest railway station is New Jalpaiguri.</div>
+                    </details>
+                    <details>
+                        <summary>What is the best time to visit Sikkim for a perfect holiday?</summary>
+                        <div>The ideal months to visit Sikkim are March to May and October to December. These months
+                            offer pleasant weather, and you can enjoy stunning mountain views and snow-capped peaks.
+                        </div>
+                    </details>
+                    <details>
+                        <summary>What is the local cuisine of Sikkim?</summary>
+                        <div>
+                            Sikkim offers a unique blend of local flavors, influenced by Tibetan, Nepalese, and Indian
+                            cuisines. Popular dishes include:
+                            <ul>
+                                <li><strong>Momos</strong> — steamed or fried dumplings.</li>
+                                <li><strong>Thukpa</strong> — noodle soup with veggies/meat.</li>
+                                <li><strong>Phagshapa</strong> — pork with radish and spices.</li>
+                                <li><strong>Sel Roti</strong> — sweet, ring-shaped rice bread.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrap">© <span id="year"></span> Holiday Unleash · FAQ</div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Active Link Highlight
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.nav-menu a').forEach(other => other.classList.remove('active'));
+                link.classList.add('active');
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

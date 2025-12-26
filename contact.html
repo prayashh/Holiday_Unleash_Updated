@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — Sikkim Explorer</title>
+    <meta name="description"
+        content="Get in touch with Sikkim Explorer. Phone, WhatsApp, email, office address & map." />
+    <meta name="author" content="waglogy" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary: #0d4c6c;
+            --secondary: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --accent: #ff9800;
+            --whatsapp: #25d366;
+            --email-blue: #3498db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        .hero h1,
+        .section-title {
+            font-family: 'Karla', 'Roboto Slab', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 76, 108, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Logo - Responsive on mobile */
+        .logo {
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--secondary);
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Drawer Toggle - Clean Icon Only */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .hamburger span,
+        .hamburger span::before,
+        .hamburger span::after {
+            content: '';
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger span::before {
+            top: -7px;
+        }
+
+        .hamburger span::after {
+            top: 7px;
+        }
+
+        .hamburger.active span {
+            background: transparent;
+        }
+
+        .hamburger.active span::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger.active span::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 120px 5% 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(13, 76, 108, 0.9), rgba(13, 76, 108, 0.9)), url('https://images.unsplash.com/photo-1574007557329-5c5e0e04e038?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Grid */
+        .btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+.email-btn {
+    border-color: var(--email-blue);
+    color: var(--email-blue);
+}
+
+.email-btn:hover {
+    background: var(--email-blue);
+    color: #fff;
+}
+
+.whatsapp-btn {
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.whatsapp-btn:hover {
+    background: #25d366;
+    color: #fff;
+}
+
+        .contact {
+            padding: 4rem 5%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card .icon img {
+            width: 38px;
+            filter: brightness(0) invert(1);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+        }
+
+        /* Outline Buttons */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+            padding: 0.65rem 1.2rem;
+            border: 2px solid;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: transparent;
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--whatsapp);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .email-btn {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+.email-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(13, 76, 108, 0.3);
+}
+
+
+        .btn-gif {
+            width: 20px;
+            height: 20px;
+        }
+
+        .whatsapp-icon-bg {
+            background: white;
+        }
+
+        .whatsapp-icon {
+            filter: none;
+        }
+
+        /* Hours */
+        .hours {
+            list-style: none;
+        }
+
+        .hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours li:last-child {
+            border: none;
+        }
+
+        /* Social */
+        .social {
+            padding: 4rem 5%;
+            text-align: center;
+            background: white;
+        }
+
+        .social h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .soc img {
+            width: 50px;
+            transition: transform 0.3s;
+        }
+
+        .soc:hover img {
+            transform: scale(1.2);
+        }
+
+        /* Map */
+        .map {
+            padding: 0 5% 4rem;
+        }
+
+        .map-embed {
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(13, 76, 108, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1rem 0 1.5rem;
+                transition: left 0.3s;
+                gap: 0.5rem;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 0.95rem;
+                padding: 0.6rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu a {
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Holiday<span>Unleash</span></div>
+            <div class="hamburger" id="hamburger"><span></span></div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="booking.html">Booking</a>
+                <a href="packages.html">Packages</a>
+                <a href="custom.html">Custom Packages</a>
+                <a href="vehicles.html">Vehicles</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html" class="active">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Get in Touch</h1>
+        <p>We’re super fast on WhatsApp & email. Call, message, or visit us — whatever works for you!</p>
+    </section>
+
+<!-- Contact Grid -->
+<section class="contact">
+    <div class="grid">
+
+        <!-- Address -->
+        <article class="card">
+            <div class="icon">
+                <img src="assets/images/vehicles/location.png" alt="Location">
+            </div>
+            <h2>Office Address</h2>
+            <p>Chandmari, Gangtok, Sikkim – 737101</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Chandmari+Gangtok+Sikkim" target="_blank"
+                class="btn-outline">
+                View on Map
+            </a>
+        </article>
+
+        <!-- Call -->
+        <article class="card">
+            <div class="icon">
+                <img src="assets/images/vehicles/call.png" alt="Call">
+            </div>
+            <h2>Call Us</h2>
+            <p>Talk directly to our travel expert</p>
+            <a href="tel:+918918992971" class="btn-outline">
+                <i class="fas fa-phone"></i> +91 89189 92971
+            </a>
+        </article>
+
+        <!-- WhatsApp -->
+        <article class="card">
+            <div class="icon whatsapp-icon-bg">
+                <img src="assets/images/vehicles/icons8-whatsapp.svg" alt="WhatsApp" class="whatsapp-icon">
+            </div>
+            <h2>WhatsApp</h2>
+            <p>Fastest replies & instant trip planning</p>
+            <a href="https://wa.me/918918992971?text=Hi%20Holiday%20Unleash%2C%20I%20want%20to%20plan%20a%20trip%20to%20Sikkim"
+                target="_blank" class="btn-outline whatsapp-btn">
+                Chat on WhatsApp
+                <img src="assets/images/vehicles/icons8-whatsapp.svg" class="btn-gif" alt="WhatsApp">
+            </a>
+        </article>
+
+        <!-- Email -->
+        <article class="card">
+            <div class="icon">
+                <img src="assets/images/vehicles/email.png" alt="Email">
+            </div>
+            <h2>Email Us</h2>
+            <p>For itineraries & formal queries</p>
+            <a href="mailto:holidayunleash@gmail.com" class="btn-outline email-btn">
+                holidayunleash@gmail.com
+            </a>
+        </article>
+
+        <!-- Business Hours -->
+        <article class="card">
+            <div class="icon">
+                <img src="assets/images/vehicles/business hours.png" alt="Hours">
+            </div>
+            <h2>Business Hours</h2>
+            <ul class="hours">
+                <li><span>Mon – Sat</span><span>9:00 AM – 6:00 PM</span></li>
+                <li><span>Sunday</span><span>10:00 AM – 2:00 PM</span></li>
+            </ul>
+        </article>
+
+    </div>
+</section>
+
+
+    <!-- Social -->
+    <section class="social">
+        <h2>Find us online</h2>
+        <p class="muted">Follow our latest trips, tips, and updates.</p>
+        <div class="icons">
+            <a class="soc" href="https://www.facebook.com/share/17J3Mgn6Ag/" target="_blank" aria-label="Facebook">
+                <img src="assets/images/vehicles/icons8-facebook-480.png" alt="Facebook" />
+            </a>
+            <a class="soc" href="" target="_blank" aria-label="Instagram">
+                <img src="assets/images/vehicles/icons8-instagram-480.png" alt="Instagram" />
+            </a>
+            <a class="soc" href="" target="_blank" aria-label="Google Business">
+                <img src="assets/images/vehicles/icons8-my-business-480.png" alt="Google Business" />
+            </a>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map">
+        <div class="map-embed">
+            <iframe title="Sikkim Explorer Location" loading="lazy"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.743957391892!2d88.589191615368!3d27.303512982948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a5d500000001%3A0x0!2sAho%2C%20Ranipool%2C%20Gangtok%2C%20Sikkim%20737135!5e0!3m2!1sen!2sin!4v1698000000000"
+                allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Sikkim Explorer · All rights reserved · Made with love in Gangtok by waglogy</p>
+    </footer>
+
+    <!-- LocalBusiness JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Sikkim Explorer",
+      "image": "assets/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Aho, Ranipool",
+        "addressLocality": "Gangtok",
+        "addressRegion": "Sikkim",
+        "postalCode": "737135",
+        "addressCountry": "IN"
+      },
+      "telephone": "+919593883263",
+      "email": "guidesikkim17@gmail.com",
+      "openingHours": "Mo-Sa 09:00-18:00, Su 10:00-14:00",
+      "url": "https://yoursite.com",
+      "sameAs": []
+    }
+    </script>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        hamburger.addEventListener('click', () => {
+            const isActive = navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active', isActive);
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu a.active')?.classList.remove('active');
+                link.classList.add('active');
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

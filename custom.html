@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Package — Holiday Unleash</title>
+    <meta name="description"
+        content="Build your dream Sikkim trip with custom destinations, hotels, vehicles, and activities." />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary: #0d4c6c;
+            --secondary: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --accent: #ff9800;
+            --gray: #95a5a6;
+            --border: #ddd;
+            --success: #25d366;
+            --selected-bg: #fff4f0;
+            --selected-text: #0d4c6c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .hero h1,
+        .section-title {
+            font-family: 'Karla', 'Roboto Slab', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 76, 108, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--secondary);
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hamburger span::before,
+        .hamburger span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span::before {
+            top: -7px;
+        }
+
+        .hamburger span::after {
+            top: 7px;
+        }
+
+        .hamburger.active span {
+            background: transparent;
+        }
+
+        .hamburger.active span::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .hamburger.active span::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 130px 5% 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(13, 76, 108, 0.9), rgba(13, 76, 108, 0.9)), url('https://images.unsplash.com/photo-1574007557329-5c5e0e04e038?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Wizard Container */
+        .wizard-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 5%;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #ddd;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step {
+            width: 44px;
+            height: 44px;
+            background: #ddd;
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            z-index: 2;
+            transition: 0.3s;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .step.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 0 8px rgba(255, 107, 53, 0.2);
+        }
+
+        .step.completed {
+            background: var(--primary);
+            color: white;
+        }
+
+        .step-label {
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            white-space: nowrap;
+            color: var(--gray);
+            width: max-content;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        /* Number Input with +/- Buttons */
+        .number-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 200px;
+        }
+
+        .number-input-wrapper input[type="number"] {
+            flex: 1;
+            text-align: center;
+            padding: 0.9rem 0.5rem;
+            -moz-appearance: textfield;
+        }
+
+        .number-input-wrapper input[type="number"]::-webkit-outer-spin-button,
+        .number-input-wrapper input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .number-btn:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .number-btn:active {
+            transform: scale(0.95);
+        }
+
+        .number-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .number-btn:disabled:hover {
+            background: white;
+            color: var(--primary);
+            border-color: var(--border);
+        }
+
+        /* Compact Destinations - No white flash */
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .dest-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.65rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            /* Removes white flash on mobile */
+        }
+
+        .dest-item:hover {
+            border-color: var(--secondary);
+            background: #f8fff9;
+        }
+
+        .dest-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .dest-item input[type="checkbox"]:checked+.dest-label {
+            color: var(--selected-text);
+            font-weight: 600;
+        }
+
+        .dest-item input[type="checkbox"]:checked+.dest-label::before {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .dest-item input[type="Checkbox"]:checked+.dest-label::after {
+            opacity: 1;
+        }
+
+        .dest-label {
+            flex: 1;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1.8rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: color 0.25s;
+        }
+
+        .dest-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.25s;
+        }
+
+        .dest-label::after {
+            content: '✔';
+            position: absolute;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        /* Hotel & Vehicle - Full card highlight */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.7rem;
+        }
+
+        .option-item {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .option-item:hover {
+            border-color: var(--secondary);
+            background: #f8fff9;
+        }
+
+        .option-item input {
+            display: none;
+        }
+
+        .option-item input:checked+.option-label {
+            background: var(--selected-bg);
+            color: var(--selected-text);
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 0.8rem;
+        }
+
+        .option-label {
+            display: block;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        /* Add-ons */
+        .addon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.7rem;
+        }
+
+        .addon-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .addon-item:hover {
+            border-color: var(--secondary);
+            background: #f8fff9;
+        }
+
+        .addon-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .addon-item input[type="checkbox"]:checked+.addon-label {
+            color: var(--selected-text);
+            font-weight: 600;
+        }
+
+        .addon-item input[type="checkbox"]:checked+.addon-label::before {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .addon-item input[type="checkbox"]:checked+.addon-label::after {
+            opacity: 1;
+        }
+
+        .addon-label {
+            flex: 1;
+            position: relative;
+            padding-left: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .addon-label::before,
+        .addon-label::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .addon-label::after {
+            background: var(--secondary);
+            opacity: 0;
+            content: '✔';
+            color: white;
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 18px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .step-nav {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.3rem 0.4rem;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 360px;
+            justify-content: space-evenly;
+        }
+
+        .btn-step {
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.98rem;
+            padding: 0.45rem 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.3s ease;
+        }
+
+        .btn-step[disabled] {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-step:hover:not([disabled]),
+        .btn-step:focus-visible {
+            color: var(--secondary);
+        }
+
+        .btn-step .arrow {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .btn-step.btn-prev {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .btn {
+            padding: 0.9rem 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-whatsapp {
+            background: var(--success);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-whatsapp:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Summary */
+        .summary {
+            background: #e8f7f0;
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin-top: 1.8rem;
+            border: 1px dashed var(--secondary);
+        }
+
+        .summary h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .summary ul {
+            list-style: none;
+        }
+
+        .summary li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ccc;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .summary li:last-child {
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: 5rem;
+        }
+
+        /* Mobile: Reduced padding + no white flash */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(13, 76, 108, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 1rem 0 1.5rem;
+                transition: left 0.3s;
+                gap: 0.5rem;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 0.95rem;
+                padding: 0.6rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .wizard-container {
+                padding: 0 20px;
+            }
+
+            /* Horizontal padding = 20px */
+            .form-step {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .step {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+
+            .step-label {
+                font-size: 0.65rem;
+                top: 48px;
+            }
+
+            .dest-grid {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+
+            .dest-item {
+                padding: 0.6rem 0.7rem;
+            }
+
+            .option-grid,
+            .addon-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-nav {
+                width: 100%;
+                justify-content: space-between;
+                border-radius: 18px;
+            }
+
+            .btn-step {
+                flex: 1;
+                justify-content: center;
+                font-size: 0.92rem;
+                padding: 0.5rem 0.3rem;
+            }
+
+            .number-input-wrapper {
+                max-width: 100%;
+            }
+
+            .number-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-bar {
+                gap: 0.2rem;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
+
+            .step {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
+            }
+
+            .step-label {
+                font-size: 0.55rem;
+                top: 42px;
+            }
+
+            .progress-bar::before {
+                height: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar - Custom Package Active -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Holiday<span>Unleash</span></div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="booking.html">Booking</a>
+                <a href="packages.html">Packages</a>
+                <a href="custom.html" class="active">Custom Packages</a>
+                <a href="vehicles.html">Vehicles</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Create Your Custom Package</h1>
+        <p>Design your perfect Sikkim adventure — pick places, stay, ride, and add-ons.</p>
+    </section>
+
+    <!-- Wizard -->
+    <div class="wizard-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active" data-step="1"><span>1</span>
+                <div class="step-label">Places</div>
+            </div>
+            <div class="step" data-step="2"><span>2</span>
+                <div class="step-label">Days</div>
+            </div>
+            <div class="step" data-step="3"><span>3</span>
+                <div class="step-label">Stay</div>
+            </div>
+            <div class="step" data-step="4"><span>4</span>
+                <div class="step-label">Ride</div>
+            </div>
+            <div class="step" data-step="5"><span>5</span>
+                <div class="step-label">Add-ons</div>
+            </div>
+            <div class="step" data-step="6"><span>6</span>
+                <div class="step-label">Review</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Destinations -->
+        <div class="form-step active" id="step-1">
+            <h2>Step 1: Pick Places</h2>
+            <div class="form-group">
+                <label>Where in Sikkim?</label>
+                <div class="dest-grid">
+                    <label class="dest-item">
+                        <input type="checkbox" value="Gangtok" />
+                        <span class="dest-label">Gangtok</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Tsomgo Lake" />
+                        <span class="dest-label">Tsomgo Lake</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Nathula Pass" />
+                        <span class="dest-label">Nathula Pass</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Baba Mandir" />
+                        <span class="dest-label">Baba Mandir</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Pelling" />
+                        <span class="dest-label">Pelling</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Ravangla" />
+                        <span class="dest-label">Ravangla</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Namchi" />
+                        <span class="dest-label">Namchi</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Lachung" />
+                        <span class="dest-label">Lachung</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Yumthang" />
+                        <span class="dest-label">Yumthang</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Zero Point" />
+                        <span class="dest-label">Zero Point</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Gurudongmar" />
+                        <span class="dest-label">Gurudongmar</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Zuluk" />
+                        <span class="dest-label">Zuluk</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Darjeeling" />
+                        <span class="dest-label">Darjeeling</span>
+                    </label>
+                    <label class="dest-item">
+                        <input type="checkbox" value="Kalimpong" />
+                        <span class="dest-label">Kalimpong</span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" disabled>
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" onclick="nextStep(1)">
+                    Next
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Duration -->
+        <div class="form-step" id="step-2">
+            <h2>Step 2: How Many Days?</h2>
+            <div class="form-group">
+                <label>Trip length</label>
+                <div class="number-input-wrapper">
+                    <button class="number-btn" type="button" id="decrease-days">−</button>
+                    <input type="number" id="duration" min="1" max="15" value="5" />
+                    <button class="number-btn" type="button" id="increase-days">+</button>
+                </div>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" onclick="prevStep(2)">
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" onclick="nextStep(2)">
+                    Next
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 3: Hotel -->
+        <div class="form-step" id="step-3">
+            <h2>Step 3: Stay Type</h2>
+            <div class="form-group">
+                <label>Hotel standard</label>
+                <div class="option-grid">
+                    <label class="option-item">
+                        <input type="radio" name="accommodation" value="Budget" />
+                        <span class="option-label">Budget</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="accommodation" value="Standard" />
+                        <span class="option-label">Standard</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="accommodation" value="Premium" />
+                        <span class="option-label">Premium</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="accommodation" value="Luxury" />
+                        <span class="option-label">Luxury</span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" onclick="prevStep(3)">
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" onclick="nextStep(3)">
+                    Next
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 4: Vehicle -->
+        <div class="form-step" id="step-4">
+            <h2>Step 4: Ride Type</h2>
+            <div class="form-group">
+                <label>Vehicle class</label>
+                <div class="option-grid">
+                    <label class="option-item">
+                        <input type="radio" name="vehicle" value="Economy" />
+                        <span class="option-label">Economy</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="vehicle" value="Standard" />
+                        <span class="option-label">Standard</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="vehicle" value="Premium" />
+                        <span class="option-label">Premium</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="radio" name="vehicle" value="Group" />
+                        <span class="option-label">Group</span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" onclick="prevStep(4)">
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" onclick="nextStep(4)">
+                    Next
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 5: Add-ons -->
+        <div class="form-step" id="step-5">
+            <h2>Step 5: Add-ons <span style="font-size: 0.7em; opacity: 0.6; font-weight: 400;">(Optional)</span></h2>
+            <div class="form-group">
+                <label>Extra adventures</label>
+                <div class="addon-grid">
+                    <label class="addon-item">
+                        <input type="checkbox" value="Trekking" />
+                        <span class="addon-label">Trekking</span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" value="River Rafting" />
+                        <span class="addon-label">River Rafting</span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" value="Paragliding" />
+                        <span class="addon-label">Paragliding</span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" value="Cable Car" />
+                        <span class="addon-label">Cable Car</span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" value="Yak Ride" />
+                        <span class="addon-label">Yak Ride</span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" value="Photography Tour" />
+                        <span class="addon-label">Photography Tour</span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" onclick="prevStep(5)">
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" onclick="nextStep(5)">
+                    Review
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 6: Summary -->
+        <div class="form-step" id="step-6">
+            <h2>Step 6: Your Package</h2>
+            <div class="summary">
+                <h3>Custom Sikkim Trip</h3>
+                <ul id="summary-list">
+                    <li><strong>Places:</strong> <span id="sum-destinations">—</span></li>
+                    <li><strong>Days:</strong> <span id="sum-duration">—</span></li>
+                    <li><strong>Stay:</strong> <span id="sum-accommodation">—</span></li>
+                    <li><strong>Ride:</strong> <span id="sum-vehicle">—</span></li>
+                    <li><strong>Add-ons:</strong> <span id="sum-addons">None</span></li>
+                </ul>
+            </div>
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: rgba(0, 0, 0, 0.6); font-weight: 400; font-size: 0.95rem;">
+                    <input type="checkbox" id="whatsapp-permission" style="width: 18px; height: 18px; cursor: pointer;">
+                    <span>I give permission to send my details via WhatsApp</span>
+                </label>
+            </div>
+            <div class="btn-group step-nav">
+                <button class="btn-step btn-prev" type="button" onclick="prevStep(6)">
+                    <span class="arrow" aria-hidden="true">←</span>
+                    Previous
+                </button>
+                <button class="btn-step btn-next" type="button" disabled>
+                    Next
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-whatsapp" id="whatsapp-btn" onclick="sendToWhatsApp()" disabled>
+                    Send on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Holiday Unleash · All rights reserved · Made in Gangtok</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            const isActive = navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active', isActive);
+        });
+
+        // Active Link Highlight
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.nav-menu a').forEach(other => other.classList.remove('active'));
+                link.classList.add('active');
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+
+        // Duration +/- Buttons
+        const durationInput = document.getElementById('duration');
+        const decreaseBtn = document.getElementById('decrease-days');
+        const increaseBtn = document.getElementById('increase-days');
+
+        function updateDurationButtons() {
+            const value = parseInt(durationInput.value) || 1;
+            decreaseBtn.disabled = value <= 1;
+            increaseBtn.disabled = value >= 15;
+        }
+
+        decreaseBtn.addEventListener('click', () => {
+            const currentValue = parseInt(durationInput.value) || 1;
+            if (currentValue > 1) {
+                durationInput.value = currentValue - 1;
+                updateDurationButtons();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            const currentValue = parseInt(durationInput.value) || 1;
+            if (currentValue < 15) {
+                durationInput.value = currentValue + 1;
+                updateDurationButtons();
+            }
+        });
+
+        durationInput.addEventListener('input', () => {
+            let value = parseInt(durationInput.value) || 1;
+            if (value < 1) value = 1;
+            if (value > 15) value = 15;
+            durationInput.value = value;
+            updateDurationButtons();
+        });
+
+        // Initialize button states
+        updateDurationButtons();
+
+        // Wizard
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        function updateProgress() {
+            document.querySelectorAll('.step').forEach((step, i) => {
+                const stepNum = i + 1;
+                step.classList.remove('active', 'completed');
+                if (stepNum < currentStep) step.classList.add('completed');
+                if (stepNum === currentStep) step.classList.add('active');
+            });
+        }
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                if (currentStep < totalSteps) {
+                    document.getElementById(`step-${currentStep}`).classList.remove('active');
+                    currentStep++;
+                    document.getElementById(`step-${currentStep}`).classList.add('active');
+                    updateProgress();
+                    updateSummary();
+                }
+            }
+        }
+
+        function prevStep(step) {
+            if (currentStep > 1) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function validateStep(step) {
+            if (step === 1 && !document.querySelector('#step-1 input:checked')) {
+                alert('Pick at least one place.');
+                return false;
+            }
+            if (step === 3 && !document.querySelector('#step-3 input[name="accommodation"]:checked')) {
+                alert('Choose a stay type.');
+                return false;
+            }
+            if (step === 4 && !document.querySelector('#step-4 input[name="vehicle"]:checked')) {
+                alert('Choose a ride type.');
+                return false;
+            }
+            return true;
+        }
+
+        function updateSummary() {
+            const dests = Array.from(document.querySelectorAll('#step-1 input:checked'))
+                .map(cb => cb.value).join(', ') || '—';
+            document.getElementById('sum-destinations').textContent = dests;
+
+            const duration = document.getElementById('duration').value || '—';
+            document.getElementById('sum-duration').textContent = duration;
+
+            const acc = document.querySelector('#step-3 input[name="accommodation"]:checked');
+            document.getElementById('sum-accommodation').textContent = acc ? acc.value : '—';
+
+            const veh = document.querySelector('#step-4 input[name="vehicle"]:checked');
+            document.getElementById('sum-vehicle').textContent = veh ? veh.value : '—';
+
+            const addons = Array.from(document.querySelectorAll('#step-5 input:checked'))
+                .map(cb => cb.value).join(', ') || 'None';
+            document.getElementById('sum-addons').textContent = addons;
+        }
+
+        function sendToWhatsApp() {
+            const permissionCheckbox = document.getElementById('whatsapp-permission');
+            if (!permissionCheckbox.checked) {
+                return;
+            }
+            
+            if (!validateStep(6)) return;
+            updateSummary();
+
+            const message = `Hi Holiday Unleash!%0A%0ACustom Sikkim Package:%0A%0A*Places:* ${document.getElementById('sum-destinations').textContent}%0A*Days:* ${document.getElementById('sum-duration').textContent}%0A*Stay:* ${document.getElementById('sum-accommodation').textContent}%0A*Ride:* ${document.getElementById('sum-vehicle').textContent}%0A*Add-ons:* ${document.getElementById('sum-addons').textContent}%0A%0APlease send quote!`;
+
+            window.open(`https://wa.me/918918992971?text=${message}`, '_blank');
+        }
+
+        // WhatsApp Permission Checkbox Handler
+        const whatsappPermission = document.getElementById('whatsapp-permission');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        
+        if (whatsappPermission && whatsappBtn) {
+            whatsappPermission.addEventListener('change', () => {
+                whatsappBtn.disabled = !whatsappPermission.checked;
+            });
+        }
+
+        updateProgress();
+    </script>
+</body>
+
+</html>
