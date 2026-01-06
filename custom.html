@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PNNC9XQZ7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2PNNC9XQZ7');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Package — Holiday Unleash</title>
@@ -1104,7 +1113,8 @@
                 </ul>
             </div>
             <div class="form-group" style="margin-top: 1.5rem;">
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: rgba(0, 0, 0, 0.6); font-weight: 400; font-size: 0.95rem;">
+                <label
+                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: rgba(0, 0, 0, 0.6); font-weight: 400; font-size: 0.95rem;">
                     <input type="checkbox" id="whatsapp-permission" style="width: 18px; height: 18px; cursor: pointer;">
                     <span>I give permission to send my details via WhatsApp</span>
                 </label>
@@ -1273,7 +1283,7 @@
             if (!permissionCheckbox.checked) {
                 return;
             }
-            
+
             if (!validateStep(6)) return;
             updateSummary();
 
@@ -1285,7 +1295,7 @@
         // WhatsApp Permission Checkbox Handler
         const whatsappPermission = document.getElementById('whatsapp-permission');
         const whatsappBtn = document.getElementById('whatsapp-btn');
-        
+
         if (whatsappPermission && whatsappBtn) {
             whatsappPermission.addEventListener('change', () => {
                 whatsappBtn.disabled = !whatsappPermission.checked;
